@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 40px 100px 20px 100px; 
+}
+h1{
+    margin-bottom: 40px;
+}
+.register{
+    width: 800px;
+    display: inline-block;
+    vertical-align: top;
+}
+.login {
+    display: inline-block;
+    width: 400px;
+}
+.row{
+    display: block;
+    height: 40px;
+}
+.title{
+    width: 120px;
+    display: inline-block;
+    font-size: 20px;
+}
+.btn{
+    height: 30px;
+    width: 150px;
+    margin-left: 80px;
+    margin-top: 20px;
+}
+.messages{
+    margin: 10px 0 20px 20px;
+    color: red;
+}
+.container{
+    width: 800px;
+    margin: 20px auto;
+}
+.header{
+    border-bottom: 2px solid black;
+}
+.logo{
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+.header_name{
+    display: inline-block;
+    margin-left: 1000px;
+    font-size: 20px;
+}
+.logout{
+    display: inline-block;
+    margin-left: 100px;
+    font-size: 20px;
+}
+.wall_post_form{
+    margin-bottom: 60px;
+}
+.wall_post_form--textarea{
+    display: block;
+    width: 800px;
+    height: 100px;
+    margin: 10px 0;
+    resize: none;
+    border: 1px solid black;
+}
+.wall_post_form--btn{
+    height: 30px;
+    width: 120px;
+    float: right;
+}
+.wall_post_form--title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.post{
+    margin: 10px 0;
+}
+.post--title{
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+.post--body{
+    margin-left: 20px;
+    
+}
+.comment{
+    margin: 10px 0 10px 40px;
+}
+.comment--title{
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    display: inline;
+}
+.comment--body{
+    word-break: break-all;
+}
+.wall_comment_form{
+    margin-bottom: 60px;
+}
+.wall_comment_form--textarea{
+    display: block;
+    width: 700px;
+    height: 50px;
+    margin: 10px 0 10px 100px;
+    resize: none;
+    border: 1px solid black;
+}
+.wall_comment_form--btn{
+    height: 30px;
+    width: 120px;
+    float: right;
+}
+.wall_comment_form--title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 100px;
+}

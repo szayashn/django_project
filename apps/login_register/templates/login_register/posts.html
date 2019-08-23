@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_register/css/style.css' %}">   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Main page</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Coidng Dojo Wall</div>
+        <div class="header_name">Welcome {{currnet_user.first_name}}</div>
+        <div class="logout">
+            <a href="/logout">Log out</a>
+        </div>  
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="post_row">
+                <div class="wall_post_form--title">Post a message</div>
+                <form action="/post" method="post" class="wall_post_form">
+                    {% csrf_token %}
+                    <textarea name="post_text" placeholder="What's in your mind" class="wall_post_form--textarea"></textarea>
+                    <input type="submit" value="Post a message" class="wall_post_form--btn">
+                </form>
+            </div>
+            <div class="post_row">
+                
+                {% if all_messages %}
+                    {% for p in all_messages %}
+                        <div class="post">
+                            <div class="post--title">{{p.user.first_name}} - {{p.updated_at }}</div>
+                            <div class="post--body">{{p.message}}</div>
+                        </div>
+                        {% if all_comments %}
+                            {% for c in all_comments %}
+                                {% if c.message.id == p.id %}
+                                    <div class="comment">
+                                        <div class="comment--title">{{c.user.first_name}} - {{c.updated_at}}</div>
+                                        {% if currnet_user.id == c.user.id %}
+                                      
+                                        <form action="/delete" method="POST" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="comment_id" value="{{c.id}}" />                                           
+                                            <a href="#" onclick="this.parentNode.submit()">delete</a>                                            
+                                        </form>
+                                        {% endif %}
+                                        <div class="comment--body">{{c.comment}}</div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <form action="/post_comment" method="post" class="wall_comment_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_comment_message_id" value="{{p.id}}">
+                            <textarea name="post_comment" class="wall_comment_form--textarea"></textarea>
+                            <input type="submit" value="Post a comment" class="wall_comment_form--btn">
+                        </form>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_register/css/style.css' %}">   
+    <title>Login Register</title>
+</head>
+<body>
+    <div class="register">
+        <h1>Registration</h1>
+        <form action="/register" method="post">
+            {% csrf_token %}
+            {% if messages%}
+            <ul class="messages">
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR  %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="row">
+                <span class="title">First name</span>
+                <input type="text" name="f_name">
+            </div>
+            <div class="row">
+                <span class="title">Last name</span>
+                <input type="text" name="l_name">
+            </div>
+            <div class="row">
+                <span class="title">Email</span>
+                <input type="text" name="email">
+            </div>
+            <div class="row">
+                <span class="title">Birthday</span>
+                <input type="date" name="b_day" id='b_day'>
+            </div>
+            <div class="row">
+                <span class="title">Password</span>
+                <input type="password" name="password">
+            </div>
+            <div class="row">
+                <span class="title">Comfirm pw</span>
+                <input type="password" name="c_password">
+            </div>
+            <input type="submit" value="Register" class="btn">
+        </form>
+    </div>
+    <div class="login">
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            {% if messages%}
+            <ul class="messages">
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="row">
+                <span class="title">Email</span>
+                <input type="text" name="login">
+            </div>
+            <div class="row">
+                <span class="title">Password</span>
+                <input type="password" name="password">
+                <input type="submit" value="Login" class="btn">
+            </div>
+        </form>
+    </div>
+    <script>
+       var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;       
+        document.getElementById("b_day").value = today;
+
+    </script>
+</body>
+</html>
